@@ -660,8 +660,9 @@ local function redeemAllCodes()
 end
 
 -- ===================================================================
--- 💤 MÔ-ĐUN 12: CHỐNG TREO MÁY AFK 24/7 (ANTI-IDLE PROTECTION)
+-- 💤 MÔ-ĐUN 12: CHỐNG TREO MÁY AFK 24/7 (ANTI-IDLE PROTECTION ĐA LỚP)
 -- ===================================================================
+-- Lớp 1: Bắt sự kiện Idled chính thức của Roblox Client
 pcall(function()
     LocalPlayer.Idled:Connect(function()
         if Config.AntiAFK then
@@ -676,9 +677,29 @@ pcall(function()
                     hrp.CFrame = hrp.CFrame * CFrame.Angles(0, math.rad(1), 0)
                 end
             end)
-            print("[+1 Aura for Anime Hub] Đã ngăn chặn ngắt kết nối AFK 20 phút thành công!")
+            print("[+1 Aura for Anime Hub] Đã ngăn chặn ngắt kết nối AFK 20 phút thành công (Lớp 1)!")
         end
     end)
+end)
+
+-- Lớp 2: Bộ đếm xung chủ động mỗi 2 phút gửi tín hiệu người dùng ảo
+task.spawn(function()
+    while true do
+        task.wait(120)
+        if Config.AntiAFK then
+            pcall(function()
+                if VirtualUser then
+                    VirtualUser:CaptureController()
+                    VirtualUser:ClickButton2(Vector2.new(0, 0))
+                end
+                if VirtualInputManager then
+                    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.RightControl, false, game)
+                    task.wait(0.05)
+                    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.RightControl, false, game)
+                end
+            end)
+        end
+    end
 end)
 
 -- ===================================================================
