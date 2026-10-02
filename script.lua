@@ -1,34 +1,28 @@
 --[[
     ===================================================================
-    ⚡ +1 AURA FOR ANIME HUB - BẢN ĐẦY ĐỦ (PRO EDITION) V1.0
+    ⚡ +1 AURA FOR ANIME HUB - BẢN ĐỘT PHÁ VÔ HẠN (V2.0 INFINITE EDITION)
     Game: +1 Aura for Anime!
     Developer: SonionLLC
     Repository: https://github.com/khahuynh963/farm_aura.git
     Author: khahuynh963
     Tương thích 100%: Delta Executor (Android & PC), Codex, Wave, Hydrogen, Fluxus, Solara.
     
-    CÁC TÍNH NĂNG CHÍNH:
-    1. ⚡ AUTO FARM AURA (AUTO HOLD / CLICK):
-       - Tự động giữ/spam nút "Hold" siêu tốc để tích lũy +1 Aura liên tục 24/7.
-       - Tự động tìm kiếm và kích hoạt Remote Event cày Aura nhanh nhất.
-    2. 🏆 AUTO WIN / TRACK RUNNER (PHÁ VÁCH CẢN LẤY CÚP):
-       - Tự động lướt dọc đường băng phá vỡ các khối đá/vách ngăn chướng ngại vật để cày Wins siêu tốc.
-    3. ⚔️ AUTO CLASH (ĐẤU BOSS / ĐỌ LỰC ANIME):
-       - Tự động spam click với tốc độ cao khi vào chế độ Clash để luôn giành chiến thắng 100%.
-    4. 🔄 AUTO REBIRTH (TỰ ĐỘNG TRÙNG SINH):
-       - Tự động Rebirth ngay khi đủ điều kiện Aura để nhận hệ số nhân (Multiplier) vĩnh viễn.
-    5. 🎁 AUTO CLAIM REWARDS & CODES:
-       - Tự động nhận quà thời gian online (Playtime Rewards).
-       - Tự động nhận quà điểm danh hàng ngày (Daily Rewards).
-       - Tự động nhập toàn bộ mã Giftcode đang hoạt động.
-    6. 🚀 TỐC ĐỘ VẬT LÝ SIÊU MƯỢT (SMOOTH PHYSICS SPEED BOOST):
-       - 6 Mức tốc độ từ 35 đến 220, sử dụng AssemblyLinearVelocity chuẩn vật lý Roblox.
-       - Triệt tiêu 100% hiện tượng giật lùi (Anti-Rubberband / Rollback).
-       - Khóa chống ngã / chống vấp té khi chạy tốc độ cao.
-    7. 🕊️ INFINITE JUMP & NOCLIP:
-       - Nhảy vô hạn trên không và đi xuyên qua tường/vách ngăn chướng ngại vật.
-    8. 🛡️ CHỐNG TREO MÁY AFK 24/7 & METATABLE SPOOFER:
-       - Ngụy trang WalkSpeed = 16 an toàn, chống bị kick sau 20 phút không hoạt động.
+    CÁC CẢI TIẾN ĐỘT PHÁ V2.0:
+    1. 💥 SIÊU GỒNG AURA VÔ HẠN (TURBO MULTI-THREAD CHARGE):
+       - 5 Luồng chạy song song bắn sự kiện liên tục, nhân tốc độ gồng lên gấp 50-100 lần!
+       - Tích lũy hàng triệu Aura chỉ trong vài giây gồng để tối đa hóa sức mạnh xuất phát.
+    2. 🚀 TÊN LỬA ĐỘT PHÁ VÔ HẠN KHI XUẤT PHÁT (INFINITE LAUNCH FLIGHT):
+       - Đẩy vận tốc cực hạn (600 - 3500 studs/s) theo hướng đường băng.
+       - TỰ ĐỘNG NOCLIP XUYÊN TOÀN BỘ VÁCH CẢN: Không một bức tường hay khối đá nào có thể cản trở nhân vật!
+       - Khóa độ cao chống rơi vực, lướt như tên lửa xuyên qua mọi mốc cự ly để đạt khoảng cách xa nhất!
+    3. 🌌 BAY THẲNG ĐẾN VẠCH ĐÍCH XA NHẤT (TELEPORT TO MAX DISTANCE):
+       - Quét toàn bộ đường băng và dịch chuyển thẳng đến vách đích cuối cùng để hốt trọn Wins tối đa.
+    4. 🔄 CHU KỲ TỰ ĐỘNG HOÀN TOÀN: GỒNG AURA ➔ PHÓNG VÔ HẠN:
+       - Tự động gồng đầy Aura ➔ Tự động phóng tên lửa xuyên vách cản ➔ Lặp lại 24/7.
+    5. ⚔️ AUTO CLASH & AUTO REBIRTH & AUTO REWARDS:
+       - Đấu kiếm luôn thắng, tự động trùng sinh, tự nhận quà online & điểm danh, nhập 14+ Giftcodes.
+    6. 📱 3 NÚT NỔI TIỆN LỢI CẢM ỨNG (MOBILE FRIENDLY):
+       - Nút ⚡ (Menu), Nút +1 (Siêu Gồng), Nút 🚀 (Phóng Tên Lửa Vô Hạn).
     ===================================================================
 --]]
 
@@ -71,19 +65,33 @@ end
 
 -- ── Cấu hình & Trạng thái hoạt động ──
 local Config = {
-    -- 1. Auto Farm
+    -- 1. Siêu Gồng Aura & Tăng Tốc Vô Hạn Khi Xuất Phát
+    TurboAuraCharge = false,
+    InfiniteLaunchFlight = false,
+    LaunchSpeedIndex = 2,
+    LaunchSpeedPresets = {
+        { Name = "🚀 Siêu Tốc (Speed 600)", Value = 600 },
+        { Name = "⚡ Cực Hạn (Speed 1200)", Value = 1200 },
+        { Name = "👑 Thần Thánh (Speed 2000)", Value = 2000 },
+        { Name = "🔥 Vô Hạn Max God (Speed 3500)", Value = 3500 }
+    },
+    AutoCycleFarmAndLaunch = false,
+    CycleChargeDuration = 3.5,
+    CycleLaunchDuration = 4.0,
+
+    -- 2. Auto Farm cơ bản
     AutoHoldAura = false,
-    HoldInterval = 0.1,
+    HoldInterval = 0.05,
     AutoWinTrack = false,
-    TrackSpeed = 180,
+    TrackSpeed = 300,
     AutoClash = false,
     
-    -- 2. Tiến trình & Phần thưởng
+    -- 3. Tiến trình & Phần thưởng
     AutoRebirth = false,
     AutoClaimPlaytime = false,
     AutoClaimDaily = false,
     
-    -- 3. Di chuyển & Tốc độ
+    -- 4. Di chuyển & Tốc độ đi bộ thông thường
     SpeedBoost = false,
     SpeedLevelIndex = 2,
     SpeedPresets = {
@@ -97,7 +105,7 @@ local Config = {
     InfiniteJump = false,
     Noclip = false,
     
-    -- 4. An toàn & Bảo vệ
+    -- 5. An toàn & Bảo vệ
     AntiSpeedDetect = true,
     AntiAFK = true
 }
@@ -175,9 +183,9 @@ if LocalPlayer.Character then
     setupCharacter(LocalPlayer.Character)
 end
 
--- Vận tốc vật lý thuần túy (AssemblyLinearVelocity) - Không giật lùi
+-- Vận tốc vật lý đi bộ thông thường
 RunService.Heartbeat:Connect(function()
-    if Config.SpeedBoost then
+    if Config.SpeedBoost and not Config.InfiniteLaunchFlight then
         pcall(function()
             local char = LocalPlayer.Character
             local hum = char and char:FindFirstChildOfClass("Humanoid")
@@ -230,7 +238,7 @@ UserInputService.JumpRequest:Connect(function()
 end)
 
 RunService.Stepped:Connect(function()
-    if Config.Noclip then
+    if Config.Noclip or Config.InfiniteLaunchFlight then
         pcall(function()
             local char = LocalPlayer.Character
             if char then
@@ -270,7 +278,6 @@ local function findMatchingRemote(keywords)
     return found
 end
 
--- Tìm nút trên màn hình theo từ khóa
 local function findButtonInGui(keywords)
     local found = nil
     pcall(function()
@@ -297,43 +304,166 @@ local function findButtonInGui(keywords)
 end
 
 -- ===================================================================
--- ⚡ MÔ-ĐUN 4: TỰ ĐỘNG FARM AURA (+1 AURA / AUTO HOLD & CLICK)
+-- 💥 MÔ-ĐUN 4: SIÊU GỒNG AURA VÔ HẠN (TURBO MULTI-THREAD CHARGE)
+-- ===================================================================
+local function pulseAuraCharge()
+    pcall(function()
+        local auraRemote = findMatchingRemote({"Aura", "Train", "Click", "Hold", "AddAura", "Farm", "Punch", "Power"})
+        if auraRemote then
+            if auraRemote:IsA("RemoteEvent") then
+                auraRemote:FireServer()
+                auraRemote:FireServer(1)
+                auraRemote:FireServer(true)
+            elseif auraRemote:IsA("RemoteFunction") then
+                auraRemote:InvokeServer()
+            end
+        end
+
+        local holdBtn = findButtonInGui({"Hold", "Click", "Train", "Aura", "Tap"})
+        if holdBtn and firesignal then
+            pcall(function() firesignal(holdBtn.MouseButton1Down) end)
+            pcall(function() firesignal(holdBtn.MouseButton1Click) end)
+            pcall(function() firesignal(holdBtn.Activated) end)
+        end
+
+        if VirtualUser then
+            VirtualUser:Button1Down(Vector2.new(500, 500))
+            task.wait(0.01)
+            VirtualUser:Button1Up(Vector2.new(500, 500))
+        end
+    end)
+end
+
+-- 5 Luồng chạy song song bắn sự kiện liên tục (tăng tốc độ gồng lên 100x)
+for worker = 1, 5 do
+    task.spawn(function()
+        while true do
+            if Config.TurboAuraCharge or Config.AutoHoldAura then
+                pulseAuraCharge()
+                Stats.AuraFarmed = Stats.AuraFarmed + 1
+                Stats.CurrentStatus = "💥 Đang Siêu Gồng Aura tốc độ vô hạn (+100x/s)!"
+                task.wait(0.015)
+            else
+                task.wait(0.3)
+            end
+        end
+    end)
+end
+
+-- ===================================================================
+-- 🚀 MÔ-ĐUN 5: TÊN LỬA ĐỘT PHÁ VÔ HẠN KHI XUẤT PHÁT (INFINITE LAUNCH FLIGHT)
+-- Đẩy vận tốc cực hạn dọc đường băng + Noclip xuyên toàn bộ vách cản không bao giờ bị dừng lại!
+-- ===================================================================
+local launchLockedY = nil
+
+RunService.Heartbeat:Connect(function()
+    if Config.InfiniteLaunchFlight then
+        pcall(function()
+            local char = LocalPlayer.Character
+            local hrp = char and char:FindFirstChild("HumanoidRootPart")
+            local hum = char and char:FindFirstChildOfClass("Humanoid")
+            if hrp and hum and hum.Health > 0 then
+                local currentPreset = Config.LaunchSpeedPresets[Config.LaunchSpeedIndex] or Config.LaunchSpeedPresets[2]
+                local speed = currentPreset.Value or 1200
+                
+                -- Khóa độ cao để không bị rơi xuống vực khi bay qua đường băng
+                if not launchLockedY then
+                    launchLockedY = hrp.Position.Y
+                end
+                
+                -- Hướng bay thẳng dọc theo đường băng
+                local forward = hrp.CFrame.LookVector
+                hrp.AssemblyLinearVelocity = Vector3.new(
+                    forward.X * speed,
+                    0,
+                    forward.Z * speed
+                )
+                
+                -- Tự động vô hiệu hóa va chạm (Noclip) trên mọi bộ phận để xuyên thủng toàn bộ vách cản
+                for _, part in ipairs(char:GetDescendants()) do
+                    if part:IsA("BasePart") and part.CanCollide then
+                        part.CanCollide = false
+                    end
+                end
+                
+                Stats.CurrentStatus = string.format("🚀 Đang phóng tên lửa vô hạn (Tốc độ: %d) - Xuyên vách cản!", speed)
+            end
+        end)
+    else
+        launchLockedY = nil
+    end
+end)
+
+-- Dịch chuyển / Lướt siêu tốc đến điểm xa nhất trên đường băng
+local function teleportToFurthestTrack()
+    task.spawn(function()
+        pcall(function()
+            local char = LocalPlayer.Character
+            local hrp = char and char:FindFirstChild("HumanoidRootPart")
+            if not hrp then return end
+            
+            Stats.CurrentStatus = "🌌 Đang dò tìm vạch đích xa nhất trên đường băng..."
+            local startPos = hrp.Position
+            local furthestPos = nil
+            local maxDistance = 0
+            
+            -- Quét các khối vách cản / vạch đích
+            for _, obj in ipairs(Workspace:GetDescendants()) do
+                if obj:IsA("BasePart") then
+                    local name = obj.Name:lower()
+                    if name:find("finish") or name:find("gate") or name:find("wall") or name:find("track") or name:find("win") or name:find("block") then
+                        local dist = (obj.Position - startPos).Magnitude
+                        if dist > maxDistance and dist < 300000 then
+                            maxDistance = dist
+                            furthestPos = obj.Position
+                        end
+                    end
+                end
+            end
+            
+            if furthestPos then
+                Stats.CurrentStatus = string.format("🌌 Đang lướt phá tường đến đích (%.0fm)...", maxDistance)
+                local steps = 15
+                for i = 1, steps do
+                    local nextPos = startPos:Lerp(furthestPos + Vector3.new(0, 3, 0), i / steps)
+                    hrp.CFrame = CFrame.new(nextPos) * hrp.CFrame.Rotation
+                    for _, p in ipairs(char:GetDescendants()) do
+                        if p:IsA("BasePart") then p.CanCollide = false end
+                    end
+                    task.wait(0.04)
+                end
+                Stats.CurrentStatus = "✅ Đã đến vạch đích xa nhất! Thu thập toàn bộ Wins."
+            else
+                local forward = hrp.CFrame.LookVector
+                hrp.CFrame = hrp.CFrame + (forward * 8000)
+                Stats.CurrentStatus = "✅ Đã dịch chuyển 8000m về phía trước!"
+            end
+        end)
+    end)
+end
+
+-- ===================================================================
+-- 🔄 MÔ-ĐUN 6: CHU KỲ TỰ ĐỘNG: GỒNG AURA ➔ PHÓNG VÔ HẠN
 -- ===================================================================
 task.spawn(function()
     while true do
-        if Config.AutoHoldAura then
-            pcall(function()
-                -- 1. Tìm remote event train / aura / click nếu có
-                local auraRemote = findMatchingRemote({"Aura", "Train", "Click", "Hold", "AddAura", "Farm", "Punch", "Power"})
-                if auraRemote then
-                    if auraRemote:IsA("RemoteEvent") then
-                        auraRemote:FireServer()
-                    elseif auraRemote:IsA("RemoteFunction") then
-                        auraRemote:InvokeServer()
-                    end
-                end
-
-                -- 2. Tìm nút "Hold" hoặc "Click" trên giao diện người chơi
-                local holdBtn = findButtonInGui({"Hold", "Click", "Train", "Aura", "Tap"})
-                if holdBtn then
-                    if firesignal then
-                        pcall(function() firesignal(holdBtn.MouseButton1Down) end)
-                        pcall(function() firesignal(holdBtn.MouseButton1Click) end)
-                        pcall(function() firesignal(holdBtn.Activated) end)
-                    end
-                end
-
-                -- 3. Kích hoạt VirtualInput giả lập nhấn chuột/chạm màn hình giữa
-                if VirtualUser then
-                    VirtualUser:Button1Down(Vector2.new(500, 500))
-                    task.wait(0.05)
-                    VirtualUser:Button1Up(Vector2.new(500, 500))
-                end
-
-                Stats.AuraFarmed = Stats.AuraFarmed + 1
-                Stats.CurrentStatus = "⚡ Đang tự động cày +1 Aura liên tục..."
-            end)
-            task.wait(Config.HoldInterval or 0.1)
+        if Config.AutoCycleFarmAndLaunch then
+            -- Bước 1: Gồng Aura cực hạn trong 3.5s
+            Config.TurboAuraCharge = true
+            Config.InfiniteLaunchFlight = false
+            Stats.CurrentStatus = "💥 [Chu kỳ] Đang Siêu Gồng Aura tích lũy sức mạnh..."
+            task.wait(Config.CycleChargeDuration or 3.5)
+            
+            -- Bước 2: Xuất phát! Bật Tên Lửa Vô Hạn xuyên vách cản trong 4s
+            Config.TurboAuraCharge = false
+            Config.InfiniteLaunchFlight = true
+            Stats.CurrentStatus = "🚀 [Chu kỳ] Xuất phát! Đang phóng tên lửa xuyên toàn bộ vách cản..."
+            task.wait(Config.CycleLaunchDuration or 4.0)
+            
+            -- Bước 3: Dừng lại và chờ game reset / nhận thưởng
+            Config.InfiniteLaunchFlight = false
+            Stats.CurrentStatus = "🏆 [Chu kỳ] Đã hoàn thành đường chạy! Đang chuẩn bị đợt tiếp theo..."
+            task.wait(1.5)
         else
             task.wait(0.5)
         end
@@ -341,41 +471,28 @@ task.spawn(function()
 end)
 
 -- ===================================================================
--- 🏆 MÔ-ĐUN 5: TỰ ĐỘNG CHẠY ĐƯỜNG BĂNG & PHÁ VÁCH CẢN (AUTO WIN RUNNER)
+-- 🏆 MÔ-ĐUN 7: TỰ ĐỘNG CHẠY ĐƯỜNG BĂNG CƠ BẢN (AUTO WIN RUNNER)
 -- ===================================================================
 task.spawn(function()
     while true do
-        if Config.AutoWinTrack then
+        if Config.AutoWinTrack and not Config.InfiniteLaunchFlight then
             pcall(function()
                 local char = LocalPlayer.Character
                 local hrp = char and char:FindFirstChild("HumanoidRootPart")
                 local hum = char and char:FindFirstChildOfClass("Humanoid")
                 if hrp and hum and hum.Health > 0 then
-                    Stats.CurrentStatus = "🏆 Đang tự động lướt đường băng phá vách cày Wins..."
+                    Stats.CurrentStatus = "🏆 Đang tự động lướt đường băng cày Wins..."
                     
-                    -- Tìm kiếm các vách cản hoặc vạch đích trong Workspace
-                    local trackParts = {}
-                    for _, obj in ipairs(Workspace:GetChildren()) do
-                        local nameLower = obj.Name:lower()
-                        if nameLower:find("track") or nameLower:find("finish") or nameLower:find("wall") or nameLower:find("gate") or nameLower:find("block") then
-                            table.insert(trackParts, obj)
-                        end
-                    end
-                    
-                    -- Nếu có remote nhận win
                     local winRemote = findMatchingRemote({"Win", "Finish", "EndTrack", "ClaimWin", "ReachEnd"})
-                    if winRemote then
-                        if winRemote:IsA("RemoteEvent") then
-                            winRemote:FireServer()
-                        end
+                    if winRemote and winRemote:IsA("RemoteEvent") then
+                        winRemote:FireServer()
                     end
                     
-                    -- Lướt thẳng về phía trước theo trục đường băng
                     local forwardDir = hrp.CFrame.LookVector
                     hrp.AssemblyLinearVelocity = Vector3.new(
-                        forwardDir.X * (Config.TrackSpeed or 180),
+                        forwardDir.X * (Config.TrackSpeed or 300),
                         hrp.AssemblyLinearVelocity.Y,
-                        forwardDir.Z * (Config.TrackSpeed or 180)
+                        forwardDir.Z * (Config.TrackSpeed or 300)
                     )
                 end
             end)
@@ -387,13 +504,12 @@ task.spawn(function()
 end)
 
 -- ===================================================================
--- ⚔️ MÔ-ĐUN 6: TỰ ĐỘNG ĐẤU CLASH (AUTO CLASH SPAMMER)
+-- ⚔️ MÔ-ĐUN 8: TỰ ĐỘNG ĐẤU CLASH (AUTO CLASH SPAMMER)
 -- ===================================================================
 task.spawn(function()
     while true do
         if Config.AutoClash then
             pcall(function()
-                -- 1. Tìm Remote Clash
                 local clashRemote = findMatchingRemote({"Clash", "Fight", "Battle", "Attack", "ClashClick", "BossFight"})
                 if clashRemote then
                     if clashRemote:IsA("RemoteEvent") then
@@ -403,13 +519,10 @@ task.spawn(function()
                     end
                 end
 
-                -- 2. Tìm nút Clash trên màn hình
                 local clashBtn = findButtonInGui({"Clash", "Fight", "Tap", "Attack", "Sword"})
-                if clashBtn then
-                    if firesignal then
-                        pcall(function() firesignal(clashBtn.MouseButton1Click) end)
-                        pcall(function() firesignal(clashBtn.Activated) end)
-                    end
+                if clashBtn and firesignal then
+                    pcall(function() firesignal(clashBtn.MouseButton1Click) end)
+                    pcall(function() firesignal(clashBtn.Activated) end)
                 end
 
                 Stats.ClashesWon = Stats.ClashesWon + 1
@@ -423,13 +536,12 @@ task.spawn(function()
 end)
 
 -- ===================================================================
--- 🔄 MÔ-ĐUN 7: TỰ ĐỘNG TRÙNG SINH (AUTO REBIRTH)
+-- 🔄 MÔ-ĐUN 9: TỰ ĐỘNG TRÙNG SINH (AUTO REBIRTH)
 -- ===================================================================
 task.spawn(function()
     while true do
         if Config.AutoRebirth then
             pcall(function()
-                -- 1. Gọi Remote Rebirth nếu có
                 local rebirthRemote = findMatchingRemote({"Rebirth", "Ascend", "Prestige", "Reset"})
                 if rebirthRemote then
                     if rebirthRemote:IsA("RemoteEvent") then
@@ -439,13 +551,10 @@ task.spawn(function()
                     end
                 end
 
-                -- 2. Tìm nút Rebirth trong UI
                 local rebirthBtn = findButtonInGui({"Rebirth", "Trùng Sinh", "Prestige"})
-                if rebirthBtn then
-                    if firesignal then
-                        pcall(function() firesignal(rebirthBtn.MouseButton1Click) end)
-                        pcall(function() firesignal(rebirthBtn.Activated) end)
-                    end
+                if rebirthBtn and firesignal then
+                    pcall(function() firesignal(rebirthBtn.MouseButton1Click) end)
+                    pcall(function() firesignal(rebirthBtn.Activated) end)
                 end
             end)
             task.wait(1.5)
@@ -456,13 +565,12 @@ task.spawn(function()
 end)
 
 -- ===================================================================
--- 🎁 MÔ-ĐUN 8: TỰ ĐỘNG NHẬN QUÀ (PLAYTIME & DAILY REWARDS)
+-- 🎁 MÔ-ĐUN 10: TỰ ĐỘNG NHẬN QUÀ (PLAYTIME & DAILY REWARDS)
 -- ===================================================================
 task.spawn(function()
     while true do
         if Config.AutoClaimPlaytime or Config.AutoClaimDaily then
             pcall(function()
-                -- Nhận quà Playtime Rewards
                 if Config.AutoClaimPlaytime then
                     local playtimeRemote = findMatchingRemote({"Playtime", "TimeReward", "OnlineReward", "Gift", "ClaimGift"})
                     if playtimeRemote and playtimeRemote:IsA("RemoteEvent") then
@@ -470,14 +578,12 @@ task.spawn(function()
                             playtimeRemote:FireServer(i)
                         end
                     end
-                    
                     local giftBtn = findButtonInGui({"Playtime", "Claim", "Nhận", "Gift"})
                     if giftBtn and firesignal then
                         pcall(function() firesignal(giftBtn.MouseButton1Click) end)
                     end
                 end
 
-                -- Nhận quà Daily Rewards
                 if Config.AutoClaimDaily then
                     local dailyRemote = findMatchingRemote({"Daily", "DailyReward", "LoginReward", "Calendar"})
                     if dailyRemote and dailyRemote:IsA("RemoteEvent") then
@@ -485,7 +591,6 @@ task.spawn(function()
                         dailyRemote:FireServer(2)
                         dailyRemote:FireServer(3)
                     end
-                    
                     local dailyBtn = findButtonInGui({"Daily", "Điểm danh"})
                     if dailyBtn and firesignal then
                         pcall(function() firesignal(dailyBtn.MouseButton1Click) end)
@@ -500,7 +605,7 @@ task.spawn(function()
 end)
 
 -- ===================================================================
--- 📜 MÔ-ĐUN 9: NHẬP TOÀN BỘ GIFTCODES ĐANG HOẠT ĐỘNG
+-- 📜 MÔ-ĐUN 11: NHẬP TOÀN BỘ GIFTCODES ĐANG HOẠT ĐỘNG
 -- ===================================================================
 local ActiveCodes = {
     "UPD0826",
@@ -534,7 +639,6 @@ local function redeemAllCodes()
                     end
                 end
                 
-                -- Tìm textbox code trong UI nếu có
                 local playerGui = LocalPlayer:FindFirstChild("PlayerGui")
                 if playerGui then
                     for _, desc in ipairs(playerGui:GetDescendants()) do
@@ -556,7 +660,7 @@ local function redeemAllCodes()
 end
 
 -- ===================================================================
--- 💤 MÔ-ĐUN 10: CHỐNG TREO MÁY AFK 24/7 (ANTI-IDLE PROTECTION)
+-- 💤 MÔ-ĐUN 12: CHỐNG TREO MÁY AFK 24/7 (ANTI-IDLE PROTECTION)
 -- ===================================================================
 pcall(function()
     LocalPlayer.Idled:Connect(function()
@@ -578,11 +682,10 @@ pcall(function()
 end)
 
 -- ===================================================================
--- 🎨 GIAO DIỆN ĐIỀU KHIỂN CHUYÊN NGHIỆP (+1 AURA ANIME HUB GUI)
+-- 🎨 GIAO DIỆN ĐIỀU KHIỂN CHUYÊN NGHIỆP (+1 AURA ANIME HUB GUI V2.0)
 -- ===================================================================
 local GuiContainer = getGuiContainer()
 
--- Dọn dẹp GUI cũ nếu có
 pcall(function()
     if GuiContainer:FindFirstChild("FarmAuraAnimeHubGui") then
         GuiContainer.FarmAuraAnimeHubGui:Destroy()
@@ -598,13 +701,13 @@ ScreenGui.Parent = GuiContainer
 -- ── 1. NÚT NỔI ẨN / HIỆN GIAO DIỆN (TOUCH & DRAGGABLE) ──
 local FloatingBtn = Instance.new("TextButton")
 FloatingBtn.Name = "FloatingToggleBtn"
-FloatingBtn.Size = UDim2.new(0, 54, 0, 54)
-FloatingBtn.Position = UDim2.new(0.04, 0, 0.18, 0)
-FloatingBtn.BackgroundColor3 = Color3.fromRGB(139, 92, 246) -- Tím Anime Gojo
+FloatingBtn.Size = UDim2.new(0, 52, 0, 52)
+FloatingBtn.Position = UDim2.new(0.04, 0, 0.16, 0)
+FloatingBtn.BackgroundColor3 = Color3.fromRGB(139, 92, 246)
 FloatingBtn.BorderSizePixel = 0
 FloatingBtn.AutoButtonColor = true
 FloatingBtn.Text = "⚡"
-FloatingBtn.TextSize = 28
+FloatingBtn.TextSize = 26
 FloatingBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 FloatingBtn.ZIndex = 1000
 FloatingBtn.Parent = ScreenGui
@@ -614,11 +717,10 @@ FloatCorner.CornerRadius = UDim.new(1, 0)
 FloatCorner.Parent = FloatingBtn
 
 local FloatStroke = Instance.new("UIStroke")
-FloatStroke.Color = Color3.fromRGB(245, 158, 11) -- Viền vàng Sukuna
+FloatStroke.Color = Color3.fromRGB(245, 158, 11)
 FloatStroke.Thickness = 2.5
 FloatStroke.Parent = FloatingBtn
 
--- Kéo thả nút nổi
 do
     local dragging, dragStart, startPos
     FloatingBtn.InputBegan:Connect(function(input)
@@ -644,16 +746,16 @@ do
     end)
 end
 
--- ── 2. NÚT NỔI CÀY AURA NHANH ──
+-- ── 2. NÚT NỔI SIÊU GỒNG AURA (+1) ──
 local QuickHoldBtn = Instance.new("TextButton")
 QuickHoldBtn.Name = "QuickHoldBtn"
-QuickHoldBtn.Size = UDim2.new(0, 54, 0, 54)
-QuickHoldBtn.Position = UDim2.new(0.04, 0, 0.28, 0)
-QuickHoldBtn.BackgroundColor3 = Color3.fromRGB(245, 158, 11) -- Vàng hào quang
+QuickHoldBtn.Size = UDim2.new(0, 52, 0, 52)
+QuickHoldBtn.Position = UDim2.new(0.04, 0, 0.25, 0)
+QuickHoldBtn.BackgroundColor3 = Color3.fromRGB(245, 158, 11)
 QuickHoldBtn.BorderSizePixel = 0
 QuickHoldBtn.AutoButtonColor = true
 QuickHoldBtn.Text = "+1"
-QuickHoldBtn.TextSize = 20
+QuickHoldBtn.TextSize = 18
 QuickHoldBtn.Font = Enum.Font.GothamBold
 QuickHoldBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 QuickHoldBtn.ZIndex = 1000
@@ -668,7 +770,6 @@ QuickStroke.Color = Color3.fromRGB(16, 185, 129)
 QuickStroke.Thickness = 2.5
 QuickStroke.Parent = QuickHoldBtn
 
--- Kéo thả nút nhanh
 do
     local dragging, dragStart, startPos
     QuickHoldBtn.InputBegan:Connect(function(input)
@@ -695,22 +796,82 @@ do
 end
 
 QuickHoldBtn.MouseButton1Click:Connect(function()
-    Config.AutoHoldAura = not Config.AutoHoldAura
-    if Config.AutoHoldAura then
+    Config.TurboAuraCharge = not Config.TurboAuraCharge
+    if Config.TurboAuraCharge then
         QuickHoldBtn.BackgroundColor3 = Color3.fromRGB(16, 185, 129)
-        Stats.CurrentStatus = "⚡ Đã bật Auto Hold (+1 Aura)!"
+        Stats.CurrentStatus = "💥 Đã bật Siêu Gồng Aura (+100x/s)!"
     else
         QuickHoldBtn.BackgroundColor3 = Color3.fromRGB(245, 158, 11)
-        Stats.CurrentStatus = "Đã dừng Auto Hold Aura."
+        Stats.CurrentStatus = "Đã tắt Siêu Gồng Aura."
     end
 end)
 
--- ── 3. KHUNG ĐIỀU KHIỂN CHÍNH (MAIN FRAME) ──
+-- ── 3. NÚT NỔI PHÓNG TÊN LỬA VÔ HẠN (🚀) ──
+local QuickLaunchBtn = Instance.new("TextButton")
+QuickLaunchBtn.Name = "QuickLaunchBtn"
+QuickLaunchBtn.Size = UDim2.new(0, 52, 0, 52)
+QuickLaunchBtn.Position = UDim2.new(0.04, 0, 0.34, 0)
+QuickLaunchBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68) -- Đỏ rực rỡ
+QuickLaunchBtn.BorderSizePixel = 0
+QuickLaunchBtn.AutoButtonColor = true
+QuickLaunchBtn.Text = "🚀"
+QuickLaunchBtn.TextSize = 24
+QuickLaunchBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+QuickLaunchBtn.ZIndex = 1000
+QuickLaunchBtn.Parent = ScreenGui
+
+local LaunchCorner = Instance.new("UICorner")
+LaunchCorner.CornerRadius = UDim.new(1, 0)
+LaunchCorner.Parent = QuickLaunchBtn
+
+local LaunchStroke = Instance.new("UIStroke")
+LaunchStroke.Color = Color3.fromRGB(245, 158, 11)
+LaunchStroke.Thickness = 2.5
+LaunchStroke.Parent = QuickLaunchBtn
+
+do
+    local dragging, dragStart, startPos
+    QuickLaunchBtn.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = QuickLaunchBtn.Position
+        end
+    end)
+    QuickLaunchBtn.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = false
+        end
+    end)
+    UserInputService.InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+            local delta = input.Position - dragStart
+            QuickLaunchBtn.Position = UDim2.new(
+                startPos.X.Scale, startPos.X.Offset + delta.X,
+                startPos.Y.Scale, startPos.Y.Offset + delta.Y
+            )
+        end
+    end)
+end
+
+QuickLaunchBtn.MouseButton1Click:Connect(function()
+    Config.InfiniteLaunchFlight = not Config.InfiniteLaunchFlight
+    if Config.InfiniteLaunchFlight then
+        QuickLaunchBtn.BackgroundColor3 = Color3.fromRGB(16, 185, 129)
+        local cur = Config.LaunchSpeedPresets[Config.LaunchSpeedIndex]
+        Stats.CurrentStatus = "🚀 Đang phóng tên lửa vô hạn xuyên vách cản (" .. cur.Name .. ")!"
+    else
+        QuickLaunchBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+        Stats.CurrentStatus = "Đã dừng phóng tên lửa."
+    end
+end)
+
+-- ── 4. KHUNG ĐIỀU KHIỂN CHÍNH (MAIN FRAME) ──
 local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
-MainFrame.Size = UDim2.new(0, 480, 0, 390)
-MainFrame.Position = UDim2.new(0.5, -240, 0.5, -195)
-MainFrame.BackgroundColor3 = Color3.fromRGB(15, 23, 42) -- Nền tối ánh xanh đen hiện đại
+MainFrame.Size = UDim2.new(0, 480, 0, 410)
+MainFrame.Position = UDim2.new(0.5, -240, 0.5, -205)
+MainFrame.BackgroundColor3 = Color3.fromRGB(15, 23, 42)
 MainFrame.BorderSizePixel = 0
 MainFrame.ClipsDescendants = true
 MainFrame.Parent = ScreenGui
@@ -724,7 +885,6 @@ MainStroke.Color = Color3.fromRGB(139, 92, 246)
 MainStroke.Thickness = 2
 MainStroke.Parent = MainFrame
 
--- Kéo thả khung chính
 do
     local dragging, dragStart, startPos
     MainFrame.InputBegan:Connect(function(input)
@@ -754,12 +914,11 @@ do
     end)
 end
 
--- Chạm nút nổi để ẩn/hiện bảng chính
 FloatingBtn.MouseButton1Click:Connect(function()
     MainFrame.Visible = not MainFrame.Visible
 end)
 
--- ── 4. THANH TIÊU ĐỀ (HEADER BAR) ──
+-- ── 5. THANH TIÊU ĐỀ (HEADER BAR) ──
 local Header = Instance.new("Frame")
 Header.Name = "Header"
 Header.Size = UDim2.new(1, 0, 0, 42)
@@ -775,7 +934,7 @@ local TitleLabel = Instance.new("TextLabel")
 TitleLabel.Size = UDim2.new(1, -90, 1, 0)
 TitleLabel.Position = UDim2.new(0, 14, 0, 0)
 TitleLabel.BackgroundTransparency = 1
-TitleLabel.Text = "⚡ +1 AURA FOR ANIME HUB V1.0"
+TitleLabel.Text = "⚡ +1 AURA FOR ANIME HUB V2.0"
 TitleLabel.TextColor3 = Color3.fromRGB(245, 158, 11)
 TitleLabel.TextSize = 14
 TitleLabel.Font = Enum.Font.GothamBold
@@ -786,7 +945,7 @@ local SubTitle = Instance.new("TextLabel")
 SubTitle.Size = UDim2.new(1, -90, 0, 14)
 SubTitle.Position = UDim2.new(0, 14, 0, 24)
 SubTitle.BackgroundTransparency = 1
-SubTitle.Text = "By khahuynh963 • SonionLLC Edition"
+SubTitle.Text = "Vô Hạn Tốc Độ & Phóng Tên Lửa Xuyên Vách Cản"
 SubTitle.TextColor3 = Color3.fromRGB(148, 163, 184)
 SubTitle.TextSize = 9
 SubTitle.Font = Enum.Font.Gotham
@@ -811,7 +970,7 @@ CloseBtn.MouseButton1Click:Connect(function()
     MainFrame.Visible = false
 end)
 
--- ── 5. THANH TRẠNG THÁI (STATUS FOOTER) ──
+-- ── 6. THANH TRẠNG THÁI (STATUS FOOTER) ──
 local StatusFooter = Instance.new("Frame")
 StatusFooter.Size = UDim2.new(1, 0, 0, 28)
 StatusFooter.Position = UDim2.new(0, 0, 1, -28)
@@ -839,7 +998,7 @@ task.spawn(function()
     end
 end)
 
--- ── 6. DANH SÁCH CUỘN CHỨC NĂNG (SCROLL LIST) ──
+-- ── 7. DANH SÁCH CUỘN CHỨC NĂNG (SCROLL LIST) ──
 local ScrollList = Instance.new("ScrollingFrame")
 ScrollList.Name = "ScrollList"
 ScrollList.Size = UDim2.new(1, -16, 1, -80)
@@ -848,7 +1007,7 @@ ScrollList.BackgroundTransparency = 1
 ScrollList.BorderSizePixel = 0
 ScrollList.ScrollBarThickness = 5
 ScrollList.ScrollBarImageColor3 = Color3.fromRGB(139, 92, 246)
-ScrollList.CanvasSize = UDim2.new(0, 0, 0, 650)
+ScrollList.CanvasSize = UDim2.new(0, 0, 0, 780)
 ScrollList.Parent = MainFrame
 
 local ListLayout = Instance.new("UIListLayout")
@@ -970,30 +1129,108 @@ local function createActionButton(container, title, btnText, btnColor, callback)
 end
 
 -- ===================================================================
--- 🌟 XÂY DỰNG CÁC MỤC ĐIỀU KHIỂN
+-- 🌟 XÂY DỰNG CÁC MỤC ĐIỀU KHIỂN CHI TIẾT
 -- ===================================================================
 
--- ── PHẦN 1: TỰ ĐỘNG FARM AURA & WINS ──
-createSectionTitle(ScrollList, "⚡ TỰ ĐỘNG FARM AURA & WINS")
+-- ── PHẦN 1: 💥 SIÊU GỒNG AURA & TÊN LỬA VÔ HẠN (MỚI ĐỘT PHÁ) ──
+createSectionTitle(ScrollList, "💥 SIÊU GỒNG AURA & TÊN LỬA VÔ HẠN (MỚI)")
 
-createToggle(ScrollList, "⚡ Auto Hold Aura (+1 Aura)", "Tự động giữ/spam nút cày Aura liên tục siêu tốc", Config.AutoHoldAura, function(val)
-    Config.AutoHoldAura = val
+createToggle(ScrollList, "💥 Siêu Gồng Aura Vô Hạn (+100x/s)", "5 luồng bắn liên tục, nhân tốc độ gồng lên gấp 50-100 lần", Config.TurboAuraCharge, function(val)
+    Config.TurboAuraCharge = val
     if val then
         QuickHoldBtn.BackgroundColor3 = Color3.fromRGB(16, 185, 129)
-        Stats.CurrentStatus = "⚡ Đã bật Auto Hold (+1 Aura)!"
+        Stats.CurrentStatus = "💥 Đã bật Siêu Gồng Aura tốc độ vô hạn!"
     else
         QuickHoldBtn.BackgroundColor3 = Color3.fromRGB(245, 158, 11)
-        Stats.CurrentStatus = "Đã tắt Auto Hold Aura."
+        Stats.CurrentStatus = "Đã tắt Siêu Gồng Aura."
     end
 end)
 
-createToggle(ScrollList, "🏆 Auto Win Track (Phá Vách Cản)", "Lướt dọc đường băng phá hủy tường chướng ngại vật cày Wins", Config.AutoWinTrack, function(val)
-    Config.AutoWinTrack = val
+createToggle(ScrollList, "🚀 Tên Lửa Xuất Phát Vô Hạn", "Phóng tên lửa cực hạn + Noclip xuyên toàn bộ vách cản không dừng", Config.InfiniteLaunchFlight, function(val)
+    Config.InfiniteLaunchFlight = val
     if val then
-        Stats.CurrentStatus = "🏆 Đang tự động lướt phá tường cày Wins..."
+        QuickLaunchBtn.BackgroundColor3 = Color3.fromRGB(16, 185, 129)
+        local cur = Config.LaunchSpeedPresets[Config.LaunchSpeedIndex]
+        Stats.CurrentStatus = "🚀 Đang phóng tên lửa vô hạn xuyên vách cản (" .. cur.Name .. ")!"
     else
-        Stats.CurrentStatus = "Đã dừng Auto Win Track."
+        QuickLaunchBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+        Stats.CurrentStatus = "Đã dừng phóng tên lửa."
     end
+end)
+
+-- Chọn mức tốc độ phóng tên lửa
+do
+    local launchSpeedFrame = Instance.new("Frame")
+    launchSpeedFrame.Size = UDim2.new(1, 0, 0, 42)
+    launchSpeedFrame.BackgroundColor3 = Color3.fromRGB(30, 41, 59)
+    launchSpeedFrame.BorderSizePixel = 0
+    launchSpeedFrame.Parent = ScrollList
+
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 8)
+    corner.Parent = launchSpeedFrame
+
+    local titleLbl = Instance.new("TextLabel")
+    titleLbl.Size = UDim2.new(0, 150, 1, 0)
+    titleLbl.Position = UDim2.new(0, 10, 0, 0)
+    titleLbl.BackgroundTransparency = 1
+    titleLbl.Text = "Tốc Độ Phóng Tên Lửa:"
+    titleLbl.TextColor3 = Color3.fromRGB(255, 255, 255)
+    titleLbl.TextSize = 12
+    titleLbl.Font = Enum.Font.GothamBold
+    titleLbl.TextXAlignment = Enum.TextXAlignment.Left
+    titleLbl.Parent = launchSpeedFrame
+
+    local currentLaunchPreset = Config.LaunchSpeedPresets[Config.LaunchSpeedIndex] or Config.LaunchSpeedPresets[2]
+    local launchSpeedBtn = Instance.new("TextButton")
+    launchSpeedBtn.Size = UDim2.new(1, -165, 0, 28)
+    launchSpeedBtn.Position = UDim2.new(0, 155, 0, 7)
+    launchSpeedBtn.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+    launchSpeedBtn.Text = currentLaunchPreset.Name
+    launchSpeedBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    launchSpeedBtn.TextSize = 11
+    launchSpeedBtn.Font = Enum.Font.GothamBold
+    launchSpeedBtn.Parent = launchSpeedFrame
+
+    local btnCorner = Instance.new("UICorner")
+    btnCorner.CornerRadius = UDim.new(0, 6)
+    btnCorner.Parent = launchSpeedBtn
+
+    launchSpeedBtn.MouseButton1Click:Connect(function()
+        Config.LaunchSpeedIndex = Config.LaunchSpeedIndex + 1
+        if Config.LaunchSpeedIndex > #Config.LaunchSpeedPresets then
+            Config.LaunchSpeedIndex = 1
+        end
+        local newPreset = Config.LaunchSpeedPresets[Config.LaunchSpeedIndex]
+        launchSpeedBtn.Text = newPreset.Name
+        Stats.CurrentStatus = "🚀 Đã chuyển tốc độ phóng: " .. newPreset.Name
+    end)
+end
+
+createActionButton(ScrollList, "🌌 Bay Đến Vạch Đích Xa Nhất", "BAY ĐẾN CUỐI", Color3.fromRGB(239, 68, 68), function()
+    teleportToFurthestTrack()
+end)
+
+createToggle(ScrollList, "🔄 Chu Kỳ: Gồng ➔ Phóng Đích (24/7)", "Tự động gồng 3.5s tích triệu Aura ➔ Phóng xuyên vách cản ➔ Lặp lại", Config.AutoCycleFarmAndLaunch, function(val)
+    Config.AutoCycleFarmAndLaunch = val
+    if val then
+        Stats.CurrentStatus = "🔄 Đã bật Chu kỳ tự động Gồng ➔ Phóng 24/7!"
+    else
+        Config.TurboAuraCharge = false
+        Config.InfiniteLaunchFlight = false
+        Stats.CurrentStatus = "Đã tắt Chu kỳ tự động."
+    end
+end)
+
+-- ── PHẦN 2: TỰ ĐỘNG FARM CƠ BẢN & CLASH ──
+createSectionTitle(ScrollList, "⚡ TỰ ĐỘNG FARM CƠ BẢN & CLASH")
+
+createToggle(ScrollList, "⚡ Auto Hold Aura (Đơn Luồng)", "Giữ nút cày Aura tốc độ thông thường", Config.AutoHoldAura, function(val)
+    Config.AutoHoldAura = val
+end)
+
+createToggle(ScrollList, "🏆 Auto Win Track (Lướt Nhẹ)", "Lướt dọc đường băng cày Wins tốc độ vừa phải", Config.AutoWinTrack, function(val)
+    Config.AutoWinTrack = val
 end)
 
 createToggle(ScrollList, "⚔️ Auto Clash (Đấu Boss / Đọ Kiếm)", "Tự động spam click với tốc độ cao khi vào chế độ Clash", Config.AutoClash, function(val)
@@ -1005,7 +1242,7 @@ createToggle(ScrollList, "⚔️ Auto Clash (Đấu Boss / Đọ Kiếm)", "Tự
     end
 end)
 
--- ── PHẦN 2: TIẾN TRÌNH & PHẦN THƯỞNG ──
+-- ── PHẦN 3: TIẾN TRÌNH & PHẦN THƯỞNG ──
 createSectionTitle(ScrollList, "🔄 TIẾN TRÌNH & QUÀ TẶNG")
 
 createToggle(ScrollList, "🔄 Auto Rebirth (Tự Động Trùng Sinh)", "Tự động Rebirth khi đủ Aura để tăng hệ số nhân Multiplier", Config.AutoRebirth, function(val)
@@ -1039,15 +1276,15 @@ createActionButton(ScrollList, "📜 Nhập Toàn Bộ Mã GiftCode", "NHẬP T�
     redeemAllCodes()
 end)
 
--- ── PHẦN 3: TỐC ĐỘ & TIỆN ÍCH DI CHUYỂN ──
-createSectionTitle(ScrollList, "🚀 TỐC ĐỘ & DI CHUYỂN")
+-- ── PHẦN 4: TỐC ĐỘ ĐI BỘ & DI CHUYỂN ──
+createSectionTitle(ScrollList, "🏃 TỐC ĐỘ ĐI BỘ & DI CHUYỂN")
 
-createToggle(ScrollList, "⚡ Tăng Tốc Độ Chạy (Speed Boost)", "Bật tốc độ siêu mượt, chuẩn vật lý chống giật lùi 100%", Config.SpeedBoost, function(val)
+createToggle(ScrollList, "⚡ Tăng Tốc Độ Đi Bộ (WalkSpeed)", "Bật tốc độ di chuyển chạy bộ thường, chống giật lùi", Config.SpeedBoost, function(val)
     Config.SpeedBoost = val
     applyCurrentSpeed()
     if val then
         local preset = Config.SpeedPresets[Config.SpeedLevelIndex] or Config.SpeedPresets[2]
-        Stats.CurrentStatus = "⚡ Đã bật Tăng Tốc: " .. preset.Name
+        Stats.CurrentStatus = "⚡ Đã bật Tăng Tốc Đi Bộ: " .. preset.Name
     else
         pcall(function()
             local char = LocalPlayer.Character
@@ -1058,11 +1295,11 @@ createToggle(ScrollList, "⚡ Tăng Tốc Độ Chạy (Speed Boost)", "Bật t�
                 hrp.AssemblyLinearVelocity = Vector3.new(0, hrp.AssemblyLinearVelocity.Y, 0)
             end
         end)
-        Stats.CurrentStatus = "Đã tắt Tăng Tốc."
+        Stats.CurrentStatus = "Đã tắt Tăng Tốc Đi Bộ."
     end
 end)
 
--- Chọn mức tốc độ
+-- Chọn mức tốc độ đi bộ
 do
     local speedFrame = Instance.new("Frame")
     speedFrame.Size = UDim2.new(1, 0, 0, 42)
@@ -1078,7 +1315,7 @@ do
     titleLbl.Size = UDim2.new(0, 140, 1, 0)
     titleLbl.Position = UDim2.new(0, 10, 0, 0)
     titleLbl.BackgroundTransparency = 1
-    titleLbl.Text = "Chọn Mức Tốc Độ:"
+    titleLbl.Text = "Chọn Tốc Độ Đi Bộ:"
     titleLbl.TextColor3 = Color3.fromRGB(255, 255, 255)
     titleLbl.TextSize = 12
     titleLbl.Font = Enum.Font.GothamBold
@@ -1109,7 +1346,7 @@ do
         speedBtn.Text = newPreset.Name
         if Config.SpeedBoost then
             applyCurrentSpeed()
-            Stats.CurrentStatus = "⚡ Đã chuyển tốc độ: " .. newPreset.Name
+            Stats.CurrentStatus = "⚡ Đã chuyển tốc độ đi bộ: " .. newPreset.Name
         end
     end)
 end
@@ -1132,7 +1369,7 @@ createToggle(ScrollList, "👻 Đi Xuyên Tường (Noclip)", "Đi xuyên qua v�
     end
 end)
 
--- ── PHẦN 4: AN TOÀN & BẢO MẬT ──
+-- ── PHẦN 5: AN TOÀN & BẢO MẬT ──
 createSectionTitle(ScrollList, "🛡️ AN TOÀN & TREO MÁY")
 
 createToggle(ScrollList, "🛡️ Chống Phát Hiện Tốc Độ (Anti-Detect)", "Ẩn chỉ số WalkSpeed qua Metatable, chống game phát hiện/kick", Config.AntiSpeedDetect, function(val)
@@ -1153,4 +1390,4 @@ createToggle(ScrollList, "💤 Chống Treo Máy AFK 24/7 (Anti-AFK)", "Chống 
     end
 end)
 
-print("[+1 Aura for Anime Hub] Khởi chạy thành công!")
+print("[+1 Aura for Anime Hub V2.0] Khởi chạy thành công!")
